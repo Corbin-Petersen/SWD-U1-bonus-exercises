@@ -117,17 +117,14 @@ let attractions = [gatewayArch, cityMuseum];
 
 // TODO: use nested loops to print values inside objects
 
-for (let attraction in attractions) {
-	for (let key in attractions[attraction]) {
-		if (Array.isArray(attractions[attraction][key])) {
-			for (let value in attractions[attraction][key]) {
-				console.log(attractions[attraction][key][value]);
+for (let attraction of attractions) {
+	for (let key in attraction) {
+		if (Array.isArray(attraction[key])) {
+			for (let element of attraction[key]) {
+				console.log(element);
 			}
-			// for (let i=0; i < attractions[attraction][key].length; i++) {
-			// 	console.log(attractions[attraction][key][i]);
-			// }
 		} else {
-			console.log(attractions[attraction][key]);
+			console.log(attraction[key]);
 		}
 	}
 }
