@@ -112,14 +112,14 @@ let attractions = [klam, wbg];
 */
 
 // TODO: use nested loops to print values inside objects
-for (let i=0; i < attractions.length; i++) {
-	for (key in attractions[i]) {
-		if (Array.isArray(attractions[i][key])) { // array
-			for (let j=0; j < attractions[i][key].length; j++) {
-				console.log(attractions[i][key][j]);
+for (let attraction of attractions) {
+	for (key in attraction) {
+		if (Array.isArray(attraction[key])) { // array
+			for (let j=0; j < attraction[key].length; j++) {
+				console.log(attraction[key][j]);
 			}
 		} else { // not an array
-			console.log(attractions[i][key]);
+			console.log(attraction[key]);
 		}
 	}
 	console.log(" ") // quick cheat to put empty line between them
