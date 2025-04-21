@@ -82,28 +82,53 @@ let pantry = {
 };
 
 // Let's print a formatted list of each property and its values. We always start with the outside and work our way in. So let's set up our for...in loop first. 
-for (let packageType in pantry) {
-	console.log(`\n${packageType.toUpperCase()}`);
-	console.log("-".repeat(packageType.length));
-	// Now we will set up a regular for loop inside to handle printing each element of each array.
-	for (let i=0; i < pantry[packageType].length; i++) {
-		console.log(pantry[packageType][i]);
-	}
-}
+
+// for (let packageType in pantry) {
+// 	console.log(`\n${packageType.toUpperCase()}`);
+// 	console.log("-".repeat(packageType.length));
+// 	// Now we will set up a regular for loop inside to handle printing each element of each array.
+// 	for (let i=0; i < pantry[packageType].length; i++) {
+// 		console.log(pantry[packageType][i]);
+// 	}
+// }
+
 // Run the program to see the results in the console. Nicely formatted, right? Notice how each array had a different number of items, but we handled that by taking the length of each array, as pantry[packageType] is the correct way to refer to the value of each property.
 
 console.log(""); // skip a line in console
 
 // TODO: Write a function that takes in an index number, prints "Items at index (x):" and then prints the element at that index of each array as you loop through the object. Use the escape character \t to indent each item for that index. If the array doesn't have anything at that index, it should be skipped without throwing an error. (Note: you don't need nested loops for this one.)
 
+function itemsAtIndex(obj, index) {
+	for (let info in obj) {
+		if (index > obj[info].length - 1) {
+			console.log(`No item at index ${index}`);
+		} else {
+			console.log(`Items at index ${index}: ${obj[info][index]}\t`);
+		}
+	}
+}
+
 
 // TODO: Call the function above at 2 or 3 different index numbers and check to see the results are what you expect.
+
+itemsAtIndex(pantry, 3);
+itemsAtIndex(pantry, 2);
+itemsAtIndex(pantry, 0);
 
 
 // TODO: Now write a function that takes a package type as a parameter and then prints all the items of the array only for that package type. This time, print "Items that are (type):" and then put a "- " in front of each item from that array. (Hint: if you already know the name of the package type, you don't need a for...in loop to check every property!)
 
+function printPackageType(obj, type) {
+	console.log(`Items that are ${type}:`);
+	for (let item in obj[type]) {
+		console.log(` - ${obj[type][item]}\t`);
+	}
+}
 
 // TODO: Call the function for a couple of the key names in the object and check the results. Remember that JavaScript stores object keys as strings, so you'll need to pass them in that way.
+
+printPackageType(pantry, "bottled");
+printPackageType(pantry, "boxed");
 
 
 /*

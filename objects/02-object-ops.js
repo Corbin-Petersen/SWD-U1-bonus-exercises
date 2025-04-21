@@ -26,23 +26,26 @@ let sunsetDiner = {
 }; // Reminder: objects require semicolons after them
 
 // Give the iterator any variable name you want, then use that inside the loop to refer to each new key.
-for (let someKey in sunsetDiner) {
-	console.log(sunsetDiner[someKey]);
-}
+
+// for (let someKey in sunsetDiner) {
+// 	console.log(sunsetDiner[someKey]);
+// }
 
 // Did you notice that the value for knownFor is an array? What if we need to loop through that as well? Let's put a regular for loop (for arrays) inside the for...in loop (for objects).
 
 // Let's say we don't know which keys have arrays, but we need to print only the elements in any arrays found. We'll use a conditional with the helpful Array method .isArray() to see if the key holds an array in the first place, then loop to print the array's contents if that evaluates to true.
-for (let aKey in sunsetDiner) {
-	if (Array.isArray(sunsetDiner[aKey])) {
-		for (let i=0; i < sunsetDiner[aKey].length; i++) {
-			console.log(sunsetDiner[aKey][i]);
-		}
-	}
-}
+
+// for (let aKey in sunsetDiner) {
+// 	if (Array.isArray(sunsetDiner[aKey])) {
+// 		for (let i=0; i < sunsetDiner[aKey].length; i++) {
+// 			console.log(sunsetDiner[aKey][i]);
+// 		}
+// 	}
+// }
 
 // Okay we know now what all the keys and data structures are. Let's use all its information to print a cohesive and useful statement in a template literal. Pay attention to the syntax of all the references in the placeholders.
-console.log(`\nNext time you take a road trip through the Southwest, don't miss ${sunsetDiner.name} in ${sunsetDiner.location}, best in class for its ${sunsetDiner.cuisine} fare. Signature dishes include the mouth-watering ${sunsetDiner.knownFor[0]}, ${sunsetDiner.knownFor[1]}, and the delicious ${sunsetDiner.knownFor[2]}. \nPrice rating: ${sunsetDiner.priceRating}\n`);
+
+// console.log(`\nNext time you take a road trip through the Southwest, don't miss ${sunsetDiner.name} in ${sunsetDiner.location}, best in class for its ${sunsetDiner.cuisine} fare. Signature dishes include the mouth-watering ${sunsetDiner.knownFor[0]}, ${sunsetDiner.knownFor[1]}, and the delicious ${sunsetDiner.knownFor[2]}. \nPrice rating: ${sunsetDiner.priceRating}\n`);
 
 // That's all well and good, but we've made it very specific to the Sunset Diner with the variable name for the object. This template literal could be really useful for multiple restaurants. Let's create a couple more restaurants.
 
@@ -67,19 +70,19 @@ let parthenon = {
 let restaurants = [sunsetDiner, maggiesPizza, parthenon];
 
 // Ready to print statements for all three restaurants? Let's loop through our new array of objects and change the references in our template literal to handle the object at each index in the array.
-for (let restaurant of restaurants) {
-	console.log(`\nNext time you take a road trip through the Southwest, don't miss ${restaurant.name} in ${restaurant.location}, best in class for its ${restaurant.cuisine} fare. Signature dishes include the mouth-watering ${restaurant.knownFor[0]}, ${restaurant.knownFor[1]}, and the delicious ${restaurant.knownFor[2]}. \nPrice rating: ${restaurant.priceRating}\n`);
-}
+// for (let restaurant of restaurants) {
+// 	console.log(`\nNext time you take a road trip through the Southwest, don't miss ${restaurant.name} in ${restaurant.location}, best in class for its ${restaurant.cuisine} fare. Signature dishes include the mouth-watering ${restaurant.knownFor[0]}, ${restaurant.knownFor[1]}, and the delicious ${restaurant.knownFor[2]}. \nPrice rating: ${restaurant.priceRating}\n`);
+// }
 
 
 /**** YOUR TURN! ****/
 
-/*
-	You are going to accomplish the following (details further down):
-		- Create two objects with identical keys but unique values.
-		- Place the objects in an array.
-		- Practice nesting for loops and for...in loops.
-		- Loop back through, this time printing a template literal that uses the values for each object.
+/* 
+You are going to accomplish the following (details further down):
+- Create two objects with identical keys but unique values.
+- Place the objects in an array.
+- Practice nesting for loops and for...in loops.
+- Loop back through, this time printing a template literal that uses the values for each object. 
 */
 
 /*
@@ -88,6 +91,24 @@ for (let restaurant of restaurants) {
 
 // TODO: create objects and put them in an array
 
+let gatewayArch = {
+	name: "Gateway Arch",
+	location: "riverfront",
+	adultTicketPrice: 40,
+	childTicketPrice: 20,
+	famousFeatures: ["Tallest monument in the U.S.", "It's massive", "Ride to the top"],
+};
+
+let cityMuseum = {
+	name: "City Museum",
+	location: "downtown",
+	adultTicketPrice: 25,
+	childTicketPrice: 15,
+	famousFeatures: ["4-story slide", "converted shoe factory", "fun for all ages"],
+};
+
+let attractions = [gatewayArch, cityMuseum];
+
 /*
 	Loop through the array, then within that for loop, use a for...in loop to grab values from each key and print them to the console. If you come across a key storing an array, print each element in the array instead of the array itself. Remember that you need a new index variable with each nested FOR loop (i, j are common).
 
@@ -95,6 +116,21 @@ for (let restaurant of restaurants) {
 */
 
 // TODO: use nested loops to print values inside objects
+
+for (let attraction in attractions) {
+	for (let key in attractions[attraction]) {
+		if (Array.isArray(attractions[attraction][key])) {
+			for (let value in attractions[attraction][key]) {
+				console.log(attractions[attraction][key][value]);
+			}
+			// for (let i=0; i < attractions[attraction][key].length; i++) {
+			// 	console.log(attractions[attraction][key][i]);
+			// }
+		} else {
+			console.log(attractions[attraction][key]);
+		}
+	}
+}
 
 /*
 	Last task: loop through the outer array and print a single template literal for each attraction using placeholders referencing the object at each index. Here's an example:
